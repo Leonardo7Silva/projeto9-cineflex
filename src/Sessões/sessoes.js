@@ -17,6 +17,15 @@ export default function Sessoes(){
         })
     },[]);
 
+    function renderizarHoras(array){
+        if(array !== undefined){
+            return array.map((bolinha)=>
+            <div className="hora">
+                <p>{bolinha.name}</p>
+            </div>)
+        }else return
+    }
+
 
     return( 
     
@@ -30,7 +39,7 @@ export default function Sessoes(){
                 <div key={index} className="sessao">
                     <p>{value.weekday} - {value.date}</p>
                     <div className="horarios">
-                    {console.log(value.showtimes)}  
+                        {renderizarHoras(value.showtimes)}
                     </div>
                 </div>)}
             <div className="sessao">
