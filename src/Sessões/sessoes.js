@@ -42,14 +42,6 @@ export default function Sessoes(){
                         {renderizarHoras(value.showtimes)}
                     </div>
                 </div>)}
-            <div className="sessao">
-                    <p>Quinta-feira - 28/07/2022</p>
-                <div className="horarios">
-                    <div className="hora">
-                        <p>10:00</p>
-                    </div>
-                </div>
-            </div>
         </div>
         <div className="rodape">
             <div className="posterInfo">
