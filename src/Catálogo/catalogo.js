@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 function Catalogo(){
     const [capas, setCapas] = useState([])
     useEffect(()=>{
-        const requisicao = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
+        const requisicao = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies")
         requisicao.then(resposta =>{
             const novaArray = resposta.data
             setCapas(novaArray)

@@ -5,6 +5,9 @@ p {
     font-family: 'Roboto', sans-serif;  
 }
 
+a {
+    text-decoration: none;
+}
 .telaPrincipal{
     width: 100vw;
     height: auto;
@@ -23,3 +26,48 @@ p {
     color: #293845;
     font-size: 24px;
 }
+
+.conteudo{
+    width: 90vw;
+    height: 500px;
+    margin: 0 auto;
+}
+
+
+.rodape{
+    width: 100%;
+    height: 14vh;
+    background-color: #DFE6ED;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 2% 4%;
+    border: 1px solid #9EADBA;
+}
+
+.posterInfo{
+    height: 100%;
+    width: 17%;
+    background-color: #ffffff;
+    border-radius: 3px;
+    margin-right: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1%
+
+}
+.posterInfo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.informacoes p{
+    font-size: 20px;
+    color: #293845;
+    font-weight: 400;
+    margin: 6% 0;
+}
+

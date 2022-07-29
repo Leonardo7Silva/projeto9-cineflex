@@ -1,7 +1,7 @@
 import "./sessoes.css"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import {useParams} from "react-router-dom"
+import {useParams, Link} from "react-router-dom"
 
 
 export default function Sessoes(){
@@ -9,7 +9,7 @@ export default function Sessoes(){
     const [sessoes, setSessoes] = useState({})
     const [dia, setDia] = useState(['carregando'])
     useEffect(()=>{
-        const requisicao = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
+        const requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`)
         requisicao.then(resposta =>{
             const novaArray = resposta.data
             setSessoes(novaArray)
@@ -19,10 +19,12 @@ export default function Sessoes(){
 
     function renderizarHoras(array){
         if(array !== undefined){
-            return array.map((bolinha)=>
-            <div className="hora">
+            return array.map((bolinha,index)=>
+            <Link to={`/sessao/${bolinha.id}`}>
+            <div key={index} className="hora">
                 <p>{bolinha.name}</p>
-            </div>)
+            </div>
+            </Link>)
         }else return
     }
 

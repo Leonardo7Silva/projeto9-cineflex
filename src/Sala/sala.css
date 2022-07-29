@@ -1,0 +1,66 @@
+.cadeiras{
+    width: 100%;
+    height: 21vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    margin-bottom: 2vh;
+    
+    
+}
+
+.cadeira{
+    width: 7vw;
+    height: 7vw;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.disponivel{
+    border: 1px solid #808F9D;
+    background-color: #C3CFD9;
+
+}
+
+.indisponivel{
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.cadeira p{
+    font-size: 11px;
+}
+
+.marcado{
+background: #8DD7CF;
+border: 1px solid #1AAE9E;
+
+}
+
+.legenda {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.legenda > div{
+    width: 20vw;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.legenda div p{
+    font-size: 11px;
+    font-weight: 400;
+    color: #4E5A65;
+}
+
