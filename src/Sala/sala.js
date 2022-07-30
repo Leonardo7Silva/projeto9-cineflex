@@ -2,32 +2,23 @@ import { useEffect, useState } from "react";
 import "./sala.css"
 import Cadeira from "./cadeira";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Sucesso from "../Sucesso/sucesso";
 
-export default function Sala(){
+export default function Sala({
+    importe, 
+    dias, 
+    filme, 
+    assentos, 
+    cadeiras, 
+    nomeComprador, 
+    cpfComprador, 
+    mudancas, 
+    adicionarCadeira,
+    mudarComprador,
+    mudarCpfComprador}){
     const {idSessao} = useParams()
-    const [importe, setImporte] = useState([])
-    const [dias, setDias] = useState([])
-    const [filme, setFilme] = useState([])
-    const [assentos, setAssentos] = useState([])
-    const [nomeComprador, setNomeComprador] = useState("")
-    const [cpfComprador, setCpfComprador] = useState("")
-    const [cadeiras, setCadeiras] = useState([])
-    
-
-    function adicionarCadeira(id,cond1){
-        let NumId = Number(id)
-        const controle = cadeiras.filter((value)=> value === NumId)
-        if(cond1){
-        if(controle.length === 0){
-            const novaArray = [...cadeiras,NumId]
-            return setCadeiras(novaArray)
-        }else {
-            const controle2 = cadeiras.filter((value)=> value !== NumId)
-            return setCadeiras(controle2);}
-        }else return;
-    }
+    const navigate= useNavigate();
 
     function pedirCadeiras(event) {
 		event.preventDefault();
@@ -39,20 +30,14 @@ export default function Sala(){
 		}
         console.log(pacote)
 		const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", pacote);
-        requisicao.then(console.log("deu bom"))
+        requisicao.then(navigate("/sucesso"))
     }
 
 
 
     useEffect(()=> {
         let requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`)
-        requisicao.then(resposta =>{
-            const novaArray = resposta.data
-            setImporte(novaArray)
-            setAssentos(novaArray.seats)
-            setDias(novaArray.day)
-            setFilme(novaArray.movie)
-        })
+        requisicao.then((resposta) => mudancas(resposta))
     },[])
     
     return(
@@ -93,25 +78,18 @@ export default function Sala(){
             type="text" 
             placeholder="Digite seu nome..."
             value={nomeComprador}
-            onChange={event => setNomeComprador(event.target.value)}
+            onChange={event => mudarComprador(event.target.value)}
             required/>
             <label><p>CPF do comprador:</p></label>
             <input type="text" 
             placeholder="Digite seu CPF..."
             value={cpfComprador}
-            onChange={event => setCpfComprador(event.target.value)}
+            onChange={event => mudarCpfComprador(event.target.value)}
             required/>
             <div className="corno"><button type="submit"><p>Reservar assento(s)</p></button></div>
             </form>
         </div>
-        <div className="">
-            <Sucesso
-            titulo={filme.title}
-            horario={importe.name}
-            cadeiras={cadeiras}
-            nomeComprador={nomeComprador}
-            cpfComprador={cpfComprador}/>
-        </div>
+
         </div>
          <div className="rodape">
          <div className="posterInfo">
