@@ -3,11 +3,12 @@ import "./sala.css"
 import Cadeira from "./cadeira";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Sucesso from "../Sucesso/sucesso";
 
 export default function Sala(){
     const {idSessao} = useParams()
     const [importe, setImporte] = useState([])
-    const [dia, setDia] = useState([])
+    const [dias, setDias] = useState([])
     const [filme, setFilme] = useState([])
     const [assentos, setAssentos] = useState([])
     const [nomeComprador, setNomeComprador] = useState("")
@@ -16,13 +17,14 @@ export default function Sala(){
     
 
     function adicionarCadeira(id,cond1){
-        const controle = cadeiras.filter((value)=> value == id)
+        let NumId = Number(id)
+        const controle = cadeiras.filter((value)=> value === NumId)
         if(cond1){
         if(controle.length === 0){
-            const novaArray = [...cadeiras,Number(id)]
+            const novaArray = [...cadeiras,NumId]
             return setCadeiras(novaArray)
         }else {
-            const controle2 = cadeiras.filter((value)=> value !== id)
+            const controle2 = cadeiras.filter((value)=> value !== NumId)
             return setCadeiras(controle2);}
         }else return;
     }
@@ -48,7 +50,7 @@ export default function Sala(){
             const novaArray = resposta.data
             setImporte(novaArray)
             setAssentos(novaArray.seats)
-            setDia(novaArray.day)
+            setDias(novaArray.day)
             setFilme(novaArray.movie)
         })
     },[])
@@ -102,6 +104,14 @@ export default function Sala(){
             <div className="corno"><button type="submit"><p>Reservar assento(s)</p></button></div>
             </form>
         </div>
+        <div className="">
+            <Sucesso
+            titulo={filme.title}
+            horario={importe.name}
+            cadeiras={cadeiras}
+            nomeComprador={nomeComprador}
+            cpfComprador={cpfComprador}/>
+        </div>
         </div>
          <div className="rodape">
          <div className="posterInfo">
@@ -109,7 +119,7 @@ export default function Sala(){
          </div>
          <div className="informacoes">
          <p>{filme.title}</p>
-         <p>{dia.weekday} - {importe.name}</p>
+         <p>{dias.weekday} - {importe.name}</p>
          </div>
      </div>
     </>

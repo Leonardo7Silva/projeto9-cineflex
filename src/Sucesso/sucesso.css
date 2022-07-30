@@ -1,0 +1,22 @@
+.confirmacoes{
+    width: 100%;
+    height: auto;
+    margin-top: 5vh;
+}
+
+.confirmacoes h5{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    color: #293845;
+    margin-bottom: 2vh;
+}
+
+.confirmacoes p{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #293845;
+}

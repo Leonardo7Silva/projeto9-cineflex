@@ -115,3 +115,7 @@ button p{
     display: flex;
     justify-content: center;
 }
+
+.escondido{
+    display: none;
+}
