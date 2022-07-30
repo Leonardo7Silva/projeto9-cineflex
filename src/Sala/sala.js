@@ -10,6 +10,36 @@ export default function Sala(){
     const [dia, setDia] = useState([])
     const [filme, setFilme] = useState([])
     const [assentos, setAssentos] = useState([])
+    const [nomeComprador, setNomeComprador] = useState("")
+    const [cpfComprador, setCpfComprador] = useState("")
+    const [cadeiras, setCadeiras] = useState([])
+    
+
+    function adicionarCadeira(id,cond1){
+        const controle = cadeiras.filter((value)=> value == id)
+        if(cond1){
+        if(controle.length === 0){
+            const novaArray = [...cadeiras,Number(id)]
+            return setCadeiras(novaArray)
+        }else {
+            const controle2 = cadeiras.filter((value)=> value !== id)
+            return setCadeiras(controle2);}
+        }else return;
+    }
+
+    function pedirCadeiras(event) {
+		event.preventDefault();
+        const pacote = 
+        {
+			ids: cadeiras,
+			name: nomeComprador,
+            cpf: cpfComprador
+		}
+        console.log(pacote)
+		const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", pacote);
+        requisicao.then(console.log("deu bom"))
+    }
+
 
 
     useEffect(()=> {
@@ -33,7 +63,12 @@ export default function Sala(){
         <div className="conteudo">
             <div className="cadeiras">
                 {assentos.map((value, index)=>
-                <Cadeira key={index} numero={value.name} disponibilidade={value.isAvailable}/>
+                <Cadeira 
+                key={index} 
+                numero={value.name} 
+                disponibilidade={value.isAvailable}
+                adicionarCadeira={adicionarCadeira}
+                />
                 )}
             </div>
             <div className="legenda">
@@ -50,7 +85,22 @@ export default function Sala(){
                     <p>Indisponivel</p>
                 </div>
             </div>
-            {/* forms */}
+            <form onSubmit={pedirCadeiras}>
+            <label><p>Nome do comprador:</p></label>
+            <input 
+            type="text" 
+            placeholder="Digite seu nome..."
+            value={nomeComprador}
+            onChange={event => setNomeComprador(event.target.value)}
+            required/>
+            <label><p>CPF do comprador:</p></label>
+            <input type="text" 
+            placeholder="Digite seu CPF..."
+            value={cpfComprador}
+            onChange={event => setCpfComprador(event.target.value)}
+            required/>
+            <div className="corno"><button type="submit"><p>Reservar assento(s)</p></button></div>
+            </form>
         </div>
         </div>
          <div className="rodape">
