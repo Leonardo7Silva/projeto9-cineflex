@@ -42,7 +42,6 @@ export default function Sala({
     
     return(
     <>
-        {console.log(assentos)}
         <div className="telaPrincipal">
        
         <div className="escolha">

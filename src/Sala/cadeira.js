@@ -12,7 +12,7 @@ export default function Cadeira({numero, disponibilidade, adicionarCadeira, id})
     }
     function chamarFuncao(){
         marcar(selecionado)
-        adicionarCadeira(id,disponibilidade)
+        adicionarCadeira(id,disponibilidade, numero)
     }
     return(
         <div className={ disponibilidade ? `cadeira ${selecionado}` : "cadeira indisponivel"} onClick={chamarFuncao}><p>{numero}</p></div>

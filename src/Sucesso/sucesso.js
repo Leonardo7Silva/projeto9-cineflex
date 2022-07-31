@@ -1,6 +1,14 @@
 import "./sucesso.css"
+import { useNavigate } from "react-router-dom";
 
-export default function Sucesso({titulo, horario, cadeiras, nomeComprador, cpfComprador}){
+export default function Sucesso({titulo,zerarCasas, data, horario, nomeComprador, cpfComprador, cadeirasReservadas}){
+    
+    const navigate = useNavigate();
+function chamar(){
+    navigate("/");
+    zerarCasas();
+}
+
     return(
         <>
         <div className="telaPrincipal">
@@ -12,12 +20,12 @@ export default function Sucesso({titulo, horario, cadeiras, nomeComprador, cpfCo
             <div className="confirmacoes">
                 <h5>Filme e sessão</h5>
                 <p>{titulo}</p>
-                <p>24/06/2021 - {horario}</p>
+                <p>{data} - {horario}</p>
             </div>
 
             <div className="confirmacoes">
                 <h5>Ingressos</h5>
-                {cadeiras.map(value => <p>Assento {value}</p> )}
+                {cadeirasReservadas.map(value => <p>Assento {value}</p> )}
             </div>
 
             <div className="confirmacoes">
@@ -25,6 +33,8 @@ export default function Sucesso({titulo, horario, cadeiras, nomeComprador, cpfCo
                 <p>Nome: {nomeComprador}</p>
                 <p>CPF: {cpfComprador.slice(0,3)}.{cpfComprador.slice(3,6)}.{cpfComprador.slice(6,9)}-{cpfComprador.slice(9,11)}</p>
             </div>
+            <div className="separador"></div>
+            <div className="corno"><button onClick={chamar}><p>Voltar para Home</p></button></div>
         </div>
         </div>
         </>

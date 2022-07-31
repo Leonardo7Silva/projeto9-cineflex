@@ -15,18 +15,26 @@ function App(){
     const [nomeComprador, setNomeComprador] = useState("")
     const [cpfComprador, setCpfComprador] = useState("")
     const [cadeiras, setCadeiras] = useState([])
+    const [cadeirasReservadas, setCadeirasReservadas] = useState([])
 
-    function adicionarCadeira(id,cond1){
+    function adicionarCadeira(id,cond1,nome){
         let NumId = Number(id)
         const controle = cadeiras.filter((value)=> value === NumId)
+        const controle3 = cadeirasReservadas.filter((value)=> value === nome)
         if(cond1){
         if(controle.length === 0){
             const novaArray = [...cadeiras,NumId]
-            return setCadeiras(novaArray)
+            const novaArray2 = [...cadeirasReservadas,nome]
+            return setCadeiras(novaArray), setCadeirasReservadas(novaArray2);
         }else {
             const controle2 = cadeiras.filter((value)=> value !== NumId)
-            return setCadeiras(controle2);}
+            const controle4 = cadeirasReservadas.filter((value)=> value !== nome)
+            return setCadeiras(controle2), setCadeirasReservadas(controle4);}
         }else return;
+    }
+
+    function zerarCasas(){
+        setCadeirasReservadas([])
     }
 
     function mudancas(resposta){
@@ -71,7 +79,11 @@ function App(){
             horario={importe.name}
             cadeiras={cadeiras}
             nomeComprador={nomeComprador}
-            cpfComprador={cpfComprador}/>}/>
+            cpfComprador={cpfComprador}
+            cadeirasReservadas={cadeirasReservadas}
+            data={dias.date}
+            zerarCasas={zerarCasas}
+            />}/>
             </Routes>
         </BrowserRouter>
     )
