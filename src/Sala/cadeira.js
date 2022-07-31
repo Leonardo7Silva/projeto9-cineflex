@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Cadeira({numero, disponibilidade, adicionarCadeira}){
+export default function Cadeira({numero, disponibilidade, adicionarCadeira, id}){
     const [selecionado, setSelecionado] = useState("disponivel")
 
     function marcar(estado){
@@ -12,7 +12,7 @@ export default function Cadeira({numero, disponibilidade, adicionarCadeira}){
     }
     function chamarFuncao(){
         marcar(selecionado)
-        adicionarCadeira(numero,disponibilidade)
+        adicionarCadeira(id,disponibilidade)
     }
     return(
         <div className={ disponibilidade ? `cadeira ${selecionado}` : "cadeira indisponivel"} onClick={chamarFuncao}><p>{numero}</p></div>

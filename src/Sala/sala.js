@@ -42,6 +42,7 @@ export default function Sala({
     
     return(
     <>
+        {console.log(assentos)}
         <div className="telaPrincipal">
        
         <div className="escolha">
@@ -55,6 +56,7 @@ export default function Sala({
                 numero={value.name} 
                 disponibilidade={value.isAvailable}
                 adicionarCadeira={adicionarCadeira}
+                id={value.id}
                 />
                 )}
             </div>
