@@ -81,3 +81,19 @@ h6 {
     margin: 6% 0;
 }
 
+.voltar{
+    width: 12vw;
+    height: 5vh;
+    position: fixed;
+    top: 2vh;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.voltar ion-icon{
+    font-size: 40px;
+    color: #C3CFD9;
+}

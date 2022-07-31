@@ -3,7 +3,6 @@ import "./sala.css"
 import Cadeira from "./cadeira";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import Sucesso from "../Sucesso/sucesso";
 
 export default function Sala({
     importe, 
@@ -17,6 +16,7 @@ export default function Sala({
     adicionarCadeira,
     mudarComprador,
     mudarCpfComprador}){
+
     const {idSessao} = useParams()
     const navigate= useNavigate();
 
@@ -42,6 +42,7 @@ export default function Sala({
     
     return(
     <>
+        <button className="voltar" onClick={()=> navigate(-1)}><ion-icon name="arrow-back-sharp"></ion-icon></button>
         <div className="telaPrincipal">
        
         <div className="escolha">

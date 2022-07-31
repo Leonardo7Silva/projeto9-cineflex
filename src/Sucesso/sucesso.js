@@ -11,6 +11,7 @@ function chamar(){
 
     return(
         <>
+        <button className="voltar" onClick={()=> navigate(-1)}><ion-icon name="arrow-back-sharp"></ion-icon></button>
         <div className="telaPrincipal">
        
         <div className="escolha">

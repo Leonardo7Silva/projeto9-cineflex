@@ -1,13 +1,14 @@
 import "./sessoes.css"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import {useParams, Link} from "react-router-dom"
+import {useParams, Link ,useNavigate} from "react-router-dom"
 
 
 export default function Sessoes(){
     const {idFilme} = useParams()
     const [sessoes, setSessoes] = useState({})
     const [dia, setDia] = useState(['carregando'])
+    const navigate = useNavigate()
     useEffect(()=>{
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`)
         requisicao.then(resposta =>{
@@ -32,6 +33,7 @@ export default function Sessoes(){
     return( 
     
         <>
+        <button className="voltar" onClick={()=> navigate(-1)}><ion-icon name="arrow-back-sharp"></ion-icon></button>
         <div className="telaPrincipal">
             <div className="escolha">
                 <p>Selecione o horário</p>
